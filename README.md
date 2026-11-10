@@ -42,6 +42,8 @@ node sims/build.mjs cessna-live
 node sims/build.mjs strandbeest-live
 ```
 
+A fourth one, in Portuguese, is a concept rather than a real machine: `chuveiro-live`, a shower that only runs while someone stands on a floor pressure plate, with the monthly saving computed from the commercial water tariff of Cuiabá, Mato Grosso. A built copy is in `docs/chuveiro.html`.
+
 ## What is inside
 
 | | |
