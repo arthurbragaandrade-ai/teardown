@@ -19,12 +19,19 @@ function AnimatedHeading({text, className}: {text: string; className: string}) {
     <h1 className={className} style={{letterSpacing: '-0.04em'}} aria-label={text.replace('\n', ' ')}>
       {text.split('\n').map((line, li) => (
         <span key={li} className="block" aria-hidden="true">
-          {[...line].map((ch, ci) => (
-            <span key={ci} className="inline-block" style={{opacity: on ? 1 : 0, transform: on ? 'translateX(0)' : 'translateX(-18px)',
-              transition: 'opacity 500ms, transform 500ms', transitionDelay: `${li * line.length * 30 + ci * 30}ms`}}>
-              {ch === ' ' ? ' ' : ch}
-            </span>
-          ))}
+          {line.split(' ').map((word, wi, ws) => {
+            const at = ws.slice(0, wi).join(' ').length + (wi ? 1 : 0);
+            return (
+              <span key={wi} className="inline-block whitespace-nowrap">
+                {[...(wi < ws.length - 1 ? word + ' ' : word)].map((ch, ci) => (
+                  <span key={ci} className="inline-block" style={{opacity: on ? 1 : 0, transform: on ? 'translateX(0)' : 'translateX(-18px)',
+                    transition: 'opacity 500ms, transform 500ms', transitionDelay: `${li * line.length * 30 + (at + ci) * 30}ms`}}>
+                    {ch === ' ' ? '\u00A0' : ch}
+                  </span>
+                ))}
+              </span>
+            );
+          })}
         </span>
       ))}
     </h1>
@@ -75,7 +82,7 @@ export default function App() {
           {menu && <div className="liquid-glass mt-2 flex flex-col gap-1 rounded-xl p-3 md:hidden">{NAV.map(([t, h]) => <a key={h} href={h} onClick={() => setMenu(false)} className="rounded-lg px-3 py-2">{t}</a>)}</div>}
         </div>
         <div className={`relative ${PAD} flex flex-1 flex-col justify-end pb-12 lg:pb-16`}>
-          <div className="lg:grid lg:grid-cols-2 lg:items-end">
+          <div className="lg:grid lg:grid-cols-[1.7fr_1fr] lg:items-end">
             <div>
               <AnimatedHeading text={'Economia consciente\npara quem empreende.'} className="mb-4 font-display text-4xl font-normal md:text-5xl lg:text-6xl xl:text-7xl" />
               <FadeIn delay={800}><p className="mb-5 max-w-xl text-base text-sanits-paper/80 md:text-lg">Água só quando há alguém usando. Infraestrutura robusta, manutenção garantida e um aplicativo que mostra cada litro e cada real.</p></FadeIn>
