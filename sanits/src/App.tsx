@@ -108,6 +108,11 @@ export default function App() {
         </div>
       </Section>
 
+      <Section id="modelo" eyebrow="Veja por dentro" title="O produto aberto, peça por peça">
+        <p className="mb-6 max-w-2xl text-sanits-navy/75">Modelo 3D interativo. Use "Placa aberta" para separar a placa em camadas e "Dentro da parede" para ver a válvula e o controlador.</p>
+        <iframe src="chuveiro.html" title="Modelo 3D do chuveiro por placa" loading="lazy" className="h-[760px] w-full rounded-2xl border border-sanits-navy/15 bg-white" />
+      </Section>
+
       <Section id="garantias" eyebrow="Nossos compromissos" title="O que a Sanits garante">
         <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
           <Card icon={PiggyBank} title="Economia consciente" text="Menos água na conta, sem mudar o hábito de ninguém." />
